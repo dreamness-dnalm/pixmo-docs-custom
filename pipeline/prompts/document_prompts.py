@@ -11,7 +11,7 @@ Here are the requirements:
 1. Each topic is a high-level summary of the contents in {figure_type} with some design details, e.g., "the utility bill for the month of January 2022 with a detailed breakdown of charges".
 2. The topics should be diverse to help me generate varied documents. Each topic should be unique and not overlap with others.
 3. The topics are conditioned on the document type. Please ensure the topics you provided can be best visualized in "{figure_type}".
-4. All topics must be in English, even if the persona is non-English.
+4. All topics must be in {language} language.
 5. List {num_topics} topics for "{persona}" and separate them with a | character, e.g., topic1 | topic2 | ...... | topic{num_topics}.
 Do not include any additional text at the beginning or end of your response."""
 
@@ -26,7 +26,7 @@ Here are the requirements:
 2. The materials should be realistic, and the contents should be named using real-world entities. Do not use placeholder names like xxA, xxB, etc. Do not use template data like [Name], [Date], etc.
 3. The materials should be diverse and contain information from different aspects of the topic to ensure the document is informative.
 4. Do not provide too many materials. Just provide key pieces of information that are essential for a **one-page document.**
-5. All materials must be in English, even if the persona is non-English.
+5. All topics must be in {language} language.
 Please provide the materials in JSON format without additional text at the beginning or end."""
 
 
@@ -40,7 +40,7 @@ Here are the requirements:
 2. The materials should be realistic, and the contents should be named using real-world entities. Do not use placeholder names like xxA, xxB, etc. Do not use template data like [Name], [Date], etc.
 3. The materials should be diverse and contain information from different aspects of the topic to ensure the document is informative.
 4. Do not provide too many materials. Just provide key pieces of information that are essential for a **one-page document.**
-5. All materials must be in English, even if the persona is non-English.
+5. All topics must be in {language} language.
 Please provide the materials in JSON format without additional text at the beginning or end."""
 
 

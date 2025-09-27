@@ -10,17 +10,25 @@ import matplotlib.pyplot as plt
 import matplotlib.colors as mcolors
 from threadpoolctl import threadpool_limits
 
-def contains_chinese(text):
-    # Check if the text contains any Chinese characters
-    return bool(re.search("[\u4e00-\u9FFF]", text))
-
-
-# load the personas
 PERSONAS = []
-with open("./pipeline/persona.jsonl", "r") as f:
-    for line in f:
-        if not contains_chinese(line): PERSONAS.append(json.loads(line)["persona"])
-        else: continue
+def init_personas(persona_file_path, language):
+    with open(persona_file_path, "r") as f:
+        for line in f:
+            s = json.loads(line)["persona"] + ". Please respond in " + language + " language, or translate it to " + language + " if it is not in " + language + "."
+            PERSONAS.append(s)
+            # PERSONAS.append(json.loads(line)["persona"])
+
+# def contains_chinese(text):
+#     # Check if the text contains any Chinese characters
+#     return bool(re.search("[\u4e00-\u9FFF]", text))
+#
+#
+# # load the personas
+# PERSONAS = []
+# with open("./pipeline/persona.jsonl", "r") as f:
+#     for line in f:
+#         if not contains_chinese(line): PERSONAS.append(json.loads(line)["persona"])
+#         else: continue
 
 
 def is_json_valid(json_str):

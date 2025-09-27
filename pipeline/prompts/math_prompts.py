@@ -10,7 +10,7 @@ I want you to generate {num_topics} topics for {figure_type} math questions that
 Here are the requirements:
 1. Each topic is a high-level summary of a {figure_type} math questions, e.g., "Calculate the distance between two points on a coordinate plane."
 2. The topics should be diverse to help me generate varied math questions. Each topic should be unique and not overlap with others.
-3. All topics must be in English, even if the persona is non-English.
+3. All topics must be in {language} language.
 4. List {num_topics} topics for "{persona}" and separate them with a | character, e.g., topic1 | topic2 | ...... | topic{num_topics}.
 Each topic must can then be expanded as a math question. Do not include any additional text at the beginning or end of your response."""
 

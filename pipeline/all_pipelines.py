@@ -1,12 +1,14 @@
 import os
 
 from pipeline.utils.anthropic_support import CustomAnthropic
+from pipeline.utils.export_utils import process_session_output
 
 from datadreamer import DataDreamer
 from datadreamer.llms import OpenAI
 from datadreamer.steps import concat
 
 from .matplotlib_chart_pipeline import MatplotlibChartPipeline
+from .utils.utils import init_personas
 from .vegalite_chart_pipeline import VegaLiteChartPipeline
 from .plotly_chart_pipeline import PlotlyChartPipeline
 from .latex_chart_pipeline import LaTeXChartPipeline
@@ -44,33 +46,38 @@ def run_datadreamer_session(args):
         os.environ["GENERATE_QA"] = "true"
     else:
         os.environ["GENERATE_QA"] = "false"
+
+    init_personas(persona_file_path=args.persona, language=args.language)
  
     with DataDreamer("./session_output"):
-        # Load GPT-4
-        gpt_4o = OpenAI(
-            model_name="gpt-4o",
-            api_key=args.openai_api_key,
-            system_prompt="You are a helpful data scientist.",
-        )
+        # # Load GPT-4
+        # gpt_4o = OpenAI(
+        #     model_name="gpt-4o",
+        #     api_key=args.openai_api_key,
+        #     system_prompt="You are a helpful data scientist.",
+        # )
+        #
+        # gpt_4o_mini = OpenAI(
+        #     model_name="gpt-4o-mini",
+        #     api_key=args.openai_api_key,
+        #     system_prompt="You are a helpful data scientist.",
+        # )
+        #
+        # claude_sonnet = CustomAnthropic(
+        #     model_name="claude-3-7-sonnet-20250219",
+        #     api_key=args.anthropic_api_key,
+        # )
 
-        gpt_4o_mini = OpenAI(
-            model_name="gpt-4o-mini",
-            api_key=args.openai_api_key,
-            system_prompt="You are a helpful data scientist.",
-        )
+        # if args.llm == "gpt-4o": llm = gpt_4o
+        # elif args.llm == "claude-3-7-sonnet-20250219": llm = claude_sonnet
+        # elif args.llm == "gpt-4o-mini": llm = gpt_4o_mini
+        #
+        # if args.code_llm == "gpt-4o": code_llm = gpt_4o
+        # elif args.code_llm == "claude-sonnet": code_llm = claude_sonnet
+        # elif args.code_llm == "gpt-4o-mini": code_llm = gpt_4o_mini
 
-        claude_sonnet = CustomAnthropic(
-            model_name="claude-3-7-sonnet-20250219",
-            api_key=args.anthropic_api_key,
-        )
-
-        if args.llm == "gpt-4o": llm = gpt_4o
-        elif args.llm == "claude-3-7-sonnet-20250219": llm = claude_sonnet
-        elif args.llm == "gpt-4o-mini": llm = gpt_4o_mini
-
-        if args.code_llm == "gpt-4o": code_llm = gpt_4o
-        elif args.code_llm == "claude-sonnet": code_llm = claude_sonnet
-        elif args.code_llm == "gpt-4o-mini": code_llm = gpt_4o_mini
+        llm = OpenAI(model_name=args.llm, api_key=args.openai_api_key, system_prompt="You are a helpful data scientist.")
+        code_llm = OpenAI(model_name=args.code_llm, api_key=args.openai_api_key, system_prompt="You are a helpful data scientist.")
 
         # Choose which pipelines to run
         pipelines = {
@@ -129,6 +136,7 @@ def run_datadreamer_session(args):
                     "seed": args.seed,
                     "figure_types": figure_types,
                     "qa": args.qa,
+                    "language": args.language,
                 },
                 force=args.force,
             )
@@ -143,5 +151,13 @@ def run_datadreamer_session(args):
         # Preview n rows of the dataset
         print(scifi_dataset.head(n=5))
 
+        # Export datasets to JSONL and PNG formats
+        if getattr(args, 'export', True):
+            print("\n" + "="*50)
+            print("Exporting datasets to JSONL and PNG formats...")
+            print("="*50)
+            process_session_output("./session_output")
+            print("Export completed!")
+
         # Push to HuggingFace Hub
-        scifi_dataset.publish_to_hf_hub(args.name, private=True)
+        # scifi_dataset.publish_to_hf_hub(args.name, private=True)

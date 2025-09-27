@@ -19,13 +19,13 @@ if __name__ == "__main__":
         default=os.getenv("OPENAI_API_KEY"),
         help="The OpenAI secret key.",
     )
-    parser.add_argument(
-        "-a",
-        "--anthropic_api_key",
-        type=str,
-        default=os.getenv("ANTHROPIC_API_KEY"),
-        help="The Anthropic secret key.",
-    )
+    # parser.add_argument(
+    #     "-a",
+    #     "--anthropic_api_key",
+    #     type=str,
+    #     default=os.getenv("ANTHROPIC_API_KEY"),
+    #     help="The Anthropic secret key.",
+    # )
     parser.add_argument(
         "-l",
         "--llm",
@@ -37,14 +37,14 @@ if __name__ == "__main__":
         "-c",
         "--code_llm",
         type=str,
-        default="claude-sonnet",
+        default="gpt-4o",
         help="LLM to use (gpt-4 or claude-sonnet) for code generation.",
     )
     parser.add_argument(
         "-p",
         "--pipelines",
         type=str,
-        default="MatplotlibChartPipeline",
+        default="PlotlyChartPipeline",
         help="Which pipelines to run comma-separated.",
     )
     parser.add_argument(
@@ -83,12 +83,26 @@ if __name__ == "__main__":
         help="Force regenerate.",
     )
     parser.add_argument(
-        "-m",
-        "--name",
+        "--persona",
         type=str,
-        default="scifi",
-        help="The name of the dataset to push to huggingface.",
+        default="./pipeline/persona.jsonl",
+        help="persona.jsonl file to use.",
     )
+
+    parser.add_argument(
+        "--language",
+        type=str,
+        default="English",
+        help="The language to use for generation.",
+    )
+
+    # parser.add_argument(
+    #     "-m",
+    #     "--name",
+    #     type=str,
+    #     default="scifi",
+    #     help="The name of the dataset to push to huggingface.",
+    # )
     parser.add_argument(
         "-t",
         "--types",
@@ -103,6 +117,13 @@ if __name__ == "__main__":
         default=True,
         help="whether to generate QA for the visualizations.",
     )
+    parser.add_argument(
+        "-e",
+        "--export",
+        action="store_true",
+        default=True,
+        help="Export datasets to JSONL and PNG formats after generation.",
+    )
 
     args = parser.parse_args()
 
@@ -113,7 +134,9 @@ if __name__ == "__main__":
     print("Seed:", args.seed)
     print("Batch Size:", args.batch_size)
     print("Code Batch Size:", args.code_batch_size)
-    print("Name:", args.name)
+    # print("Name:", args.name)
     print("Types:", args.types)
+    print("Persona:", args.persona)
+    print("Language:", args.language)
 
     main(args)

@@ -9,9 +9,9 @@ I want you to generate {num_topics} topics for {figure_type} question that I wou
 Here are the requirements:
 1. Each topic is a high-level summary of a {figure_type} question with graphics as inputs, e.g., "A question about the area of a triangle with a given base and height" for "geometry questions".
 2. The topics should be diverse to help me generate varied questions. Each topic should be unique and not overlap with others.
-3. All topics must be in English, even if the persona is non-English.
-3. Make sure the graphics in those topics are not too hard to be rendered in SVG or Asymptote.
-4. List {num_topics} topics for "{persona}" and separate them with a | character, e.g., topic1 | topic2 | ...... | topic{num_topics}.
+3. All topics must be in {language} language.
+4. Make sure the graphics in those topics are not too hard to be rendered in SVG or Asymptote.
+5. List {num_topics} topics for "{persona}" and separate them with a | character, e.g., topic1 | topic2 | ...... | topic{num_topics}.
 Each topic must can be visualized as a question with graphics. Do not include any additional text at the beginning or end of your response."""
 
 

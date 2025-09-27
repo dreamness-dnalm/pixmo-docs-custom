@@ -21,6 +21,8 @@ class GenerateChartQA(SuperStep):
         self.register_arg(
             "batch_size", required=True, help="The batch size to use with the LLM."
         )
+        self.register_arg("language", required=True, help="The language to use.")
+
         self.register_output("metadata")
         self.register_output("topic")
         self.register_output("data")
@@ -44,7 +46,12 @@ class GenerateChartQA(SuperStep):
         qa_prompts_dataset = combined_inputs.map(
             lambda row: {
                 "prompt": GENERATE_CHART_QA_PROMPT.format(
-                    topic=row["topic"], data=row["data"], code=row["code"], persona=json.loads(row["metadata"])["persona"], figure_type=json.loads(row["metadata"])["figure_type"]
+                    topic=row["topic"],
+                    data=row["data"],
+                    code=row["code"],
+                    persona=json.loads(row["metadata"])["persona"],
+                    figure_type=json.loads(row["metadata"])["figure_type"],
+                    language=self.args["language"],
                 )
             },
             remove_columns=["image"],

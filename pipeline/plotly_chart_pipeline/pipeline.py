@@ -21,12 +21,15 @@ class PlotlyChartPipeline(SuperStep):
         self.register_arg("seed", required=True, help="The seed to use for generation.")
         self.register_arg("figure_types", required=True, help="The figure types to use.")
         self.register_arg("qa", required=True, help="Whether to generate Q&A.")
+        self.register_arg("language", required=True, help="The language to use.")
+
 
         self.register_output("metadata")
         self.register_output("topic")
         self.register_output("data")
         self.register_output("code")
         self.register_output("image")
+
 
         if os.environ["GENERATE_QA"] == "true": self.register_output("qa")
 
@@ -41,6 +44,7 @@ class PlotlyChartPipeline(SuperStep):
                 "n": self.args["n"],
                 "seed": self.args["seed"],
                 "figure_types": self.args["figure_types"],
+                "language": self.args["language"],
             },
         )
 
@@ -54,6 +58,7 @@ class PlotlyChartPipeline(SuperStep):
             args={
                 "llm": self.args["llm"],
                 "batch_size": self.args["batch_size"],
+                "language": self.args["language"],
             },
         )
 
@@ -68,6 +73,7 @@ class PlotlyChartPipeline(SuperStep):
             args={
                 "llm": self.args["code_llm"],
                 "batch_size": self.args["code_batch_size"],
+                "language": self.args["language"],
             },
         )
 
@@ -87,6 +93,7 @@ class PlotlyChartPipeline(SuperStep):
                 args={
                     "llm": self.args["llm"],
                     "batch_size": self.args["batch_size"],
+                    "language": self.args["language"],
                 },
             )
 

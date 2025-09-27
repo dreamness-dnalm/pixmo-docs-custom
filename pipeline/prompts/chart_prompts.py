@@ -11,7 +11,7 @@ Here are the requirements:
 1. Each topic is a high-level summary of statistical distribution with some details, e.g., "population growth in the US with a breakdown of the age groups."
 2. The topics should be diverse to help me generate varied figures. Each topic should be unique and not overlap with others.
 3. The topics are conditioned on the figure type. Please ensure the topics you provided can be best visualized in "{figure_type}".
-4. All topics must be in English, even if the persona is non-English.
+4. All topics must be in {language} language.
 5. List {num_topics} topics for "{persona}" and separate them with a | character, e.g., topic1 | topic2 | ...... | topic{num_topics}.
 Do not include any additional text at the beginning or end of your response."""
 
@@ -27,7 +27,7 @@ Here are the requirements:
 3. The data should be realistic, and the contents should be named using real-world entities. Do not use placeholder names like xxA, xxB, etc.
 4. The data should be diverse and contain multiple data points to ensure the chart is informative.
 5. Do not provide too much data. Just necessary data points to satisfy the topic and figure type.
-6. All data must be in English, even if the persona is non-English.
+6. All topics must be in {language} language.
 Please provide the data in CSV format without additional text at the beginning or end."""
 
 
@@ -42,7 +42,7 @@ Here are the requirements:
 3. The data should be realistic, and the contents should be named using real-world entities. Do not use placeholder names like xxA, xxB, etc.
 4. The data should be diverse and contain multiple data points to ensure the chart is informative.
 5. Do not provide too much data. Just necessary data points to satisfy the topic and figure type.
-6. All data must be in English, even if the persona is non-English.
+46 All topics must be in {language} language.
 Please provide the data in JSON format without additional text at the beginning or end."""
 
 
@@ -206,6 +206,7 @@ Please use Vega-Lite to define a {figure_type} in JSON format using the data pro
     (2) Select appropriate margins and tight layout, ensuring the plot is saved with all the elements (title, labels, etc) visible.
     (3) Don't add actual data numbers in the plot. This is very important. Because you cannot align the data with figure elements.
     (4) If the data contains the year information, format the year correctly in the x-axis.
+    (5) All text content (titles, labels, etc.) should be in {language} language.
 
 3. **Output Requirements**:
     Put ```vegalite at the beginning and ``` at the end of the script to separate the code from the text. This will help me easily extract the JSON.

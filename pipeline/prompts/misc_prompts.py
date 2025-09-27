@@ -10,7 +10,7 @@ I want you to generate {num_topics} topics for {figure_type} chemical structure 
 Here are the requirements:
 1. Each topic is a high-level summary of a {figure_type} chemicals, e.g., "The chemical structure of a aspirin molecule".
 2. The topics should be diverse to help me generate varied chemicals. Each topic should be unique and not overlap with others.
-3. All topics must be in English, even if the persona is non-English.
+3 All topics must be in {language} language.
 4. List {num_topics} topics for "{persona}" and separate them with a | character, e.g., topic1 | topic2 | ...... | topic{num_topics}.
 Each topic must can be visualized as a chemical structure. Do not include any additional text at the beginning or end of your response."""
 
@@ -84,7 +84,7 @@ I want you to generate {num_topics} topics for {figure_type} muisc that I will b
 Here are the requirements:
 1. Each topic is a high-level summary of a {figure_type} music, e.g., "80s country music about the life of a cowboy living in mississippi".
 2. The topics should be diverse to help me generate varied music. Each topic should be unique and not overlap with others.
-3. All topics must be in English, even if the persona is non-English.
+3. All topics must be in {language} language.
 4. List {num_topics} topics for "{persona}" and separate them with a | character, e.g., topic1 | topic2 | ...... | topic{num_topics}.
 Do not include any additional text at the beginning or end of your response."""
 
@@ -161,7 +161,7 @@ I want you to generate {num_topics} topics for {figure_type} circuit that I will
 Here are the requirements:
 1. Each topic is a high-level summary of a {figure_type} circuit, e.g., "A simple series circuit with a resistor and a capacitor for a charging system".
 2. The topics should be diverse to help me generate varied circuits. Each topic should be unique and not overlap with others.
-3. All topics must be in English, even if the persona is non-English.
+3. All topics must be in {language} language.
 4. List {num_topics} topics for "{persona}" and separate them with a | character, e.g., topic1 | topic2 | ...... | topic{num_topics}.
 Do not include any additional text at the beginning or end of your response."""
 
@@ -257,7 +257,7 @@ I want you to generate {num_topics} topics for {figure_type} (vector graphics) t
 Here are the requirements:
 1. Each topic is a high-level summary of a {figure_type} graphic design, e.g., "An icon of a cat playing with a ball of yarn."
 2. The topics should be diverse to help me generate varied vector graphics. Each topic should be unique and not overlap with others.
-3. All topics must be in English, even if the persona is non-English.
+3. All topics must be in {language} language.
 4. List {num_topics} topics for "{persona}" and separate them with a | character, e.g., topic1 | topic2 | ...... | topic{num_topics}.
 Each topic must can then be visualized as a vector graphic. Do not include any additional text at the beginning or end of your response."""
 

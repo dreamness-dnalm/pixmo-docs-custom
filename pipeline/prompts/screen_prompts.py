@@ -11,7 +11,7 @@ Here are the requirements:
 1. Each topic is a high-level summary of the contents in {figure_type} with some design details, e.g., "a screenshot of an exercise tracking app with minimalist design".
 2. The topics should be diverse to help me generate varied screenshots. Each topic should be unique and not overlap with others.
 3. The topics are conditioned on the screenshot type. Please ensure the topics you provided can be best visualized in "{figure_type}".
-4. All topics must be in English, even if the persona is non-English.
+4. All topics must be in {language} language.
 5. List {num_topics} topics for "{persona}" and separate them with a | character, e.g., topic1 | topic2 | ...... | topic{num_topics}.
 Do not include any additional text at the beginning or end of your response."""
 
@@ -25,7 +25,7 @@ Here are the requirements:
 1. The materials should be related to the topic and customized according to my persona. Its structure must be suitable for the {figure_type}.
 2. Make sure the materials have clickable elements, such as buttons, links, icons, or images, to make the screenshot interactive.
 3. The materials should be realistic, and the contents should be named using real-world entities. Do not use placeholder names like xxA, xxB, etc. Do not use template data like [Name], [Date], etc.
-4. All materials must be in English, even if the persona is non-English.
+4. All topics must be in {language} language.
 Please provide the materials in JSON format without additional text at the beginning or end."""
 
 
